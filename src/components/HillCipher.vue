@@ -48,6 +48,9 @@ const text = ref('')
 const result = ref('')
 
 const resizeMatrix = () => {
+  if (n.value > 5) n.value = 5
+  if (n.value < 2) n.value = 2
+
   const size = n.value
   const newMat = []
   for (let i = 0; i < size; i++) {
