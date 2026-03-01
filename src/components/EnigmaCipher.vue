@@ -44,13 +44,16 @@ const process = () => {
   for (let i = 0; i < t.length; i++) {
     let c = t.charCodeAt(i) - 65
 
-    posArr[2] = (posArr[2] + 1) % 26
-    if (String.fromCharCode(posArr[2] + 65) === rotors[2].notch) {
+    let atNotch1 = String.fromCharCode(posArr[1] + 65) === rotors[1].notch
+    let atNotch2 = String.fromCharCode(posArr[2] + 65) === rotors[2].notch
+
+    if (atNotch1) {
+      posArr[0] = (posArr[0] + 1) % 26
       posArr[1] = (posArr[1] + 1) % 26
-      if (String.fromCharCode(posArr[1] + 65) === rotors[1].notch) {
-        posArr[0] = (posArr[0] + 1) % 26
-      }
+    } else if (atNotch2) {
+      posArr[1] = (posArr[1] + 1) % 26
     }
+    posArr[2] = (posArr[2] + 1) % 26
 
     for (let r = 2; r >= 0; r--) {
       const idx = (c + posArr[r]) % 26

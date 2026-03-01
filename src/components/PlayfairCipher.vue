@@ -67,7 +67,7 @@ const formatPlaintext = (t) => {
 const process = (mode) => {
   const k = key.value || 'KEY'
   const matrix = generateMatrix(k)
-  const t = mode === 'encrypt' ? formatPlaintext(text.value) : text.value.toUpperCase().replace(/[^A-Z]/g, '')
+  const t = mode === 'encrypt' ? formatPlaintext(text.value) : text.value.toUpperCase().replace(/J/g, 'I').replace(/[^A-Z]/g, '')
   
   if (!t || t.length % 2 !== 0 && mode === 'decrypt') return
 

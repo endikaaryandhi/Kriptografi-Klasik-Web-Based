@@ -132,6 +132,7 @@ const process = (mode) => {
     processMat = adj.map(row => row.map(val => mod(val * invDet, 26)))
   } else if (gcd(det, 26) !== 1) {
      alert('Peringatan: Matriks ini tidak bisa didekripsi karena determinan tidak koprima dengan 26.')
+     return
   }
 
   let out = ''
