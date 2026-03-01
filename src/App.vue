@@ -15,8 +15,8 @@
     </header>
 
     <main class="app-main">
-      <div class="card">
-        <component :is="currentComponent"></component>
+      <div class="card" :class="{ 'home-card': currentTab === 'Home' }">
+        <component :is="currentComponent" @navigate="currentTab = $event"></component>
       </div>
     </main>
 
@@ -28,15 +28,17 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import Home from './components/Home.vue'
 import VigenereCipher from './components/VigenereCipher.vue'
 import AffineCipher from './components/AffineCipher.vue'
 import PlayfairCipher from './components/PlayfairCipher.vue'
 import HillCipher from './components/HillCipher.vue'
 import EnigmaCipher from './components/EnigmaCipher.vue'
 
-const currentTab = ref('VigenereCipher')
+const currentTab = ref('Home')
 
 const tabs = [
+  { id: 'Home', name: 'Beranda' },
   { id: 'VigenereCipher', name: 'Vigenere' },
   { id: 'AffineCipher', name: 'Affine' },
   { id: 'PlayfairCipher', name: 'Playfair' },
@@ -45,6 +47,7 @@ const tabs = [
 ]
 
 const components = {
+  Home,
   VigenereCipher,
   AffineCipher,
   PlayfairCipher,
@@ -153,6 +156,10 @@ body {
   border-radius: 0.5rem;
   border: 1px solid var(--border-color);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.home-card {
+  max-width: 800px;
 }
 
 .card h2 {
